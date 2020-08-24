@@ -4,7 +4,6 @@ import time
 import sys
 import warnings
 import argparse
-from pprint import pprint
 import deepsecurity as api
 from deepsecurity.rest import ApiException
 

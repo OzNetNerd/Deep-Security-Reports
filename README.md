@@ -1,11 +1,15 @@
-# Setup Instructions
+# Deep Security Reports
+
+Creates reports on your Deep Security protected hosts and the virtual patches which are applied to them.
+
+## Setup Instructions
 
 1. Download & install the [Deep Security SDK](https://automation.deepsecurity.trendmicro.com/article/12_5/python?platform=dsaas).
 2. Create Deep Security [API keys](https://automation.deepsecurity.trendmicro.com/article/11_1/create-and-manage-api-keys?platform=dsaas#create-an-api-key-in-deep-security-manager).
 3. Set the API key as a `DS_KEY` environment variable.
 
-# Usage Instructions
-## Help Menu
+## Usage Instructions
+### Help Menu
 
 ```
 $ python3 reporter.py -h
@@ -36,8 +40,8 @@ Specifying `--app-names` results in an "App Name" column being added to the repo
 
 Note that the search is case insensitive. Therefore, in the above example, 'nginx', 'Nginx' and 'NGINX' would all be found.  
 
-# Example Outputs
-## Report
+## Example Outputs
+### Report
 
 ```
 Hostname,Display Name,Host Description,Platform,Last IP Used,Agent Version,Policy ID,Last Agent Comms.,IPS Agent State,IPS Status,Rule Name,Rule ID,Rule Description,App Category,App Description,App Port(s),Direction,Protocol,CVE(s),CVE Year,CVSS Score,Severity,Rule Type
@@ -63,7 +67,7 @@ WIN-Q0HITV3HJ6D,,,Microsoft Windows Server 2008 R2 (64 bit) Service Pack 1 Build
 WIN-Q0HITV3HJ6D,,,Microsoft Windows Server 2008 R2 (64 bit) Service Pack 1 Build 7601,192.168.22.2,12.0.0.563,166,"25/09/2019, 21:40:11 AEST",inactive,"Off, installed, 22 rules",Microsoft Edge And Internet Explorer Same Origin Policy Bypass Vulnerabilities,6676,"Microsoft Edge and Internet Explorer are vulnerable to the same origin policy bypass vulnerability. Successful exploitation would lead the attacker to steal sensitive information like cookies, login session from sites visited by the victim.",Web Client Internet Explorer/Edge,,5,outgoing,tcp,,,6.80,medium,exploit
 ```
 
-## Summary
+### Summary
 
 ```
 Hostname,Platform,Last Agent Comms.,IPS Status,# of IPS Rules
