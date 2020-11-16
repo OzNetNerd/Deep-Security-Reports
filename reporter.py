@@ -7,8 +7,8 @@ import argparse
 import deepsecurity as api
 from deepsecurity.rest import ApiException
 
-if not sys.warnoptions:
-    warnings.simplefilter('ignore')
+# if not sys.warnoptions:
+#     warnings.simplefilter('ignore')
 
 
 class Ds:
@@ -192,7 +192,7 @@ class Ips(Ds):
 
         return base_copy
 
-    def gather_report_data(self, split_cves=False):
+    def gather_report_data(self, split_cves=True):
         report_data = [['Hostname', 'Display Name', 'Host Description', 'Platform', 'Last IP Used', 'Agent Version',
                         'Policy ID', 'Last Agent Comms.', 'IPS Agent State', 'IPS Status', 'Rule Name', 'Rule ID',
                         'Rule Description', 'App Category', 'App Description', 'App Port(s)', 'Direction',
@@ -254,6 +254,18 @@ class Ips(Ds):
 
         return summary_data
 
+    def run_report(self, report_filename):
+        report_data = self.gather_report_data()
+        self.generate_output(report_data, report_filename)
+
+        return report_data
+
+    def run_summary(self, summary_filename):
+        summary_data = self.gather_summary_data()
+        self.generate_output(summary_data, summary_filename)
+
+        return summary_data
+
 
 def args_menu():
     formatter = lambda prog: argparse.HelpFormatter(prog, max_help_position=52)
@@ -282,12 +294,8 @@ def main():
     summary_filename = args['summary_filename']
 
     ips = Ips(dsm_address, app_names)
-
-    report_data = ips.gather_report_data(split_cves=True)
-    ips.generate_output(report_data, report_filename)
-
-    summary_data = ips.gather_summary_data()
-    ips.generate_output(summary_data, summary_filename)
+    ips.run_report(report_filename)
+    ips.run_summary(summary_filename)
 
     print('Done')
 
